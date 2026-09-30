@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>GCP layout</name>
+<Placemark><name>Boundary</name><Style><LineStyle><color>ffffaa00</color><width>2</width></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style><Polygon><outerBoundaryIs><LinearRing><coordinates>52.23457412529042,35.44287683612252,0 52.23459345768536,35.44869824253044,0 52.22819651603393,35.44898137989543,0 52.22819794430232,35.45370395576241,0 52.2487625214037,35.45370082548619,0 52.24875867450424,35.44286453562171,0 52.23457412529042,35.44287683612252,0</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>
+<Placemark><name>GCP01</name><description>GCP | UTM39N E 611486.1 N 3924022.3 | RTK set</description>
+<Style><IconStyle><color>ff0000ff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.2285284,35.4534335,0</coordinates></Point></Placemark><Placemark><name>GCP02</name><description>GCP | UTM39N E 613306.5 N 3922902.8 | RTK set</description>
+<Style><IconStyle><color>ff0000ff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.2484283,35.4431353,0</coordinates></Point></Placemark><Placemark><name>GCP03</name><description>GCP | UTM39N E 612734.1 N 3924037.8 | RTK set</description>
+<Style><IconStyle><color>ff0000ff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.2422801,35.4534317,0</coordinates></Point></Placemark><Placemark><name>GCP04</name><description>GCP | UTM39N E 612079.1 N 3922888.7 | RTK set</description>
+<Style><IconStyle><color>ff0000ff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.2349055,35.443147,0</coordinates></Point></Placemark><Placemark><name>GCP05</name><description>GCP | UTM39N E 613297.6 N 3923627.1 | RTK set</description>
+<Style><IconStyle><color>ff0000ff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.2484306,35.4496658,0</coordinates></Point></Placemark><Placemark><name>GCP06</name><description>GCP | UTM39N E 612155.8 N 3923658.3 | RTK set</description>
+<Style><IconStyle><color>ff0000ff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.2358558,35.4500766,0</coordinates></Point></Placemark><Placemark><name>GCP07</name><description>GCP | UTM39N E 612755.8 N 3923258.3 | RTK set</description>
+<Style><IconStyle><color>ff0000ff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.2424104,35.4464029,0</coordinates></Point></Placemark><Placemark><name>GCP08</name><description>GCP | UTM39N E 611655.8 N 3923558.3 | RTK set</description>
+<Style><IconStyle><color>ff0000ff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.2303337,35.4492314,0</coordinates></Point></Placemark><Placemark><name>GCP09</name><description>GCP | UTM39N E 613222.1 N 3924043.8</description>
+<Style><IconStyle><color>ff0000ff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.2476565,35.4534306,0</coordinates></Point></Placemark><Placemark><name>GCP10</name><description>GCP | UTM39N E 612567.1 N 3922894.3</description>
+<Style><IconStyle><color>ff0000ff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.2402813,35.4431425,0</coordinates></Point></Placemark><Placemark><name>GCP11</name><description>GCP | UTM39N E 612255.8 N 3923258.3</description>
+<Style><IconStyle><color>ff0000ff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.2369023,35.4464594,0</coordinates></Point></Placemark><Placemark><name>GCP12</name><description>GCP | UTM39N E 612002.2 N 3924028.7</description>
+<Style><IconStyle><color>ff0000ff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.2342154,35.4534329,0</coordinates></Point></Placemark><Placemark><name>GCP13</name><description>GCP | UTM39N E 612555.8 N 3923658.3</description>
+<Style><IconStyle><color>ff0000ff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.2402625,35.4500314,0</coordinates></Point></Placemark><Placemark><name>GCP14</name><description>GCP | UTM39N E 613155.8 N 3923258.3</description>
+<Style><IconStyle><color>ff0000ff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.246817,35.4463574,0</coordinates></Point></Placemark><Placemark><name>GCP15</name><description>GCP | UTM39N E 612368.2 N 3924033.2</description>
+<Style><IconStyle><color>ff0000ff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.2382477,35.4534324,0</coordinates></Point></Placemark><Placemark><name>GCP16</name><description>GCP | UTM39N E 612933.0 N 3922898.5</description>
+<Style><IconStyle><color>ff0000ff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.2443131,35.443139,0</coordinates></Point></Placemark><Placemark><name>GCP17</name><description>GCP | UTM39N E 612955.8 N 3923758.3</description>
+<Style><IconStyle><color>ff0000ff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.2446831,35.4508875,0</coordinates></Point></Placemark><Placemark><name>GCP18</name><description>GCP | UTM39N E 611755.8 N 3923858.3</description>
+<Style><IconStyle><color>ff0000ff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.2314765,35.4519246,0</coordinates></Point></Placemark><Placemark><name>GCP19</name><description>GCP | UTM39N E 612955.8 N 3923458.3</description>
+<Style><IconStyle><color>ff0000ff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.2446415,35.4481831,0</coordinates></Point></Placemark><Placemark><name>GCP20</name><description>GCP | UTM39N E 612323.1 N 3922891.5</description>
+<Style><IconStyle><color>ff0000ff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.2375934,35.4431448,0</coordinates></Point></Placemark><Placemark><name>CHK01</name><description>Check | UTM39N E 612978.1 N 3924040.8</description>
+<Style><IconStyle><color>ff00ffff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.2449683,35.4534312,0</coordinates></Point></Placemark><Placemark><name>CHK02</name><description>Check | UTM39N E 611555.8 N 3923758.3</description>
+<Style><IconStyle><color>ff00ffff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.2292594,35.4510456,0</coordinates></Point></Placemark><Placemark><name>CHK03</name><description>Check | UTM39N E 611855.8 N 3923658.3</description>
+<Style><IconStyle><color>ff00ffff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.2325508,35.4501104,0</coordinates></Point></Placemark><Placemark><name>CHK04</name><description>Check | UTM39N E 612355.8 N 3923458.3</description>
+<Style><IconStyle><color>ff00ffff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.2380315,35.4482511,0</coordinates></Point></Placemark><Placemark><name>CHK05</name><description>Check | UTM39N E 612355.8 N 3923758.3</description>
+<Style><IconStyle><color>ff00ffff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.238073,35.4509555,0</coordinates></Point></Placemark><Placemark><name>CHK06</name><description>Check | UTM39N E 612455.8 N 3923158.3</description>
+<Style><IconStyle><color>ff00ffff</color><scale>0.9</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_square.png</href></Icon></IconStyle></Style>
+<Point><coordinates>52.2390917,35.4455354,0</coordinates></Point></Placemark></Document></kml>
