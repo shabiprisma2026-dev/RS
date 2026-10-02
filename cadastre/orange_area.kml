@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>Orange area (approx.)</name>
+<Style id="orange"><LineStyle><color>ff0080ff</color><width>2</width></LineStyle><PolyStyle><color>800080ff</color></PolyStyle></Style>
+<Placemark><name>Orange area</name><description>Approximate digitisation from cadastre screenshot; perimeter 2050 m, area 4.13 ha. Check against the cadastre map before use.</description>
+<styleUrl>#orange</styleUrl><Polygon><outerBoundaryIs><LinearRing><coordinates>57.3193692,33.6153685,0 57.3213169,33.6187814,0 57.3217255,33.6186182,0 57.3197275,33.6151172,0 57.3147848,33.6121599,0 57.3145214,33.6124680,0 57.3193692,33.6153685,0</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>
+<Placemark><name>Centreline</name><styleUrl>#orange</styleUrl><LineString><coordinates>57.3146531,33.6123139,0 57.3195483,33.6152428,0 57.3215212,33.6186998,0</coordinates></LineString></Placemark>
+<Placemark><name>Anchor (Lng/Lat from site)</name><Point><coordinates>57.318081,33.613867,0</coordinates></Point></Placemark>
+</Document></kml>
