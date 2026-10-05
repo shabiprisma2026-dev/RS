@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>Orange area (approx.)</name>
+<kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>Orange area (v2, Sentinel-2 matched)</name>
 <Style id="orange"><LineStyle><color>ff0080ff</color><width>2</width></LineStyle><PolyStyle><color>800080ff</color></PolyStyle></Style>
-<Placemark><name>Orange area</name><description>Approximate digitisation from cadastre screenshot; perimeter 2050 m, area 4.13 ha. Check against the cadastre map before use.</description>
-<styleUrl>#orange</styleUrl><Polygon><outerBoundaryIs><LinearRing><coordinates>57.3193692,33.6153685,0 57.3213169,33.6187814,0 57.3217255,33.6186182,0 57.3197275,33.6151172,0 57.3147848,33.6121599,0 57.3145214,33.6124680,0 57.3193692,33.6153685,0</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>
-<Placemark><name>Centreline</name><styleUrl>#orange</styleUrl><LineString><coordinates>57.3146531,33.6123139,0 57.3195483,33.6152428,0 57.3215212,33.6186998,0</coordinates></LineString></Placemark>
+<Placemark><name>Orange area</name><description>Digitised from cadastre screenshots, georeferenced by matching to Sentinel-2 (~50 m); perimeter 1722 m, area 3.44 ha. Check against the cadastre map before use.</description>
+<styleUrl>#orange</styleUrl><Polygon><outerBoundaryIs><LinearRing><coordinates>57.3199645,33.6158473,0 57.3216202,33.6187551,0 57.3220289,33.6185922,0 57.3203207,33.6155920,0 57.3162083,33.6132466,0 57.3159533,33.6135596,0 57.3199645,33.6158473,0</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>
+<Placemark><name>Centreline</name><styleUrl>#orange</styleUrl><LineString><coordinates>57.3160808,33.6134031,0 57.3201426,33.6157197,0 57.3218245,33.6186737,0</coordinates></LineString></Placemark>
 <Placemark><name>Anchor (Lng/Lat from site)</name><Point><coordinates>57.318081,33.613867,0</coordinates></Point></Placemark>
 </Document></kml>
