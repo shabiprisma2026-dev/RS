@@ -1,0 +1,8 @@
+numpy
+shapely
+pyproj
+rasterio
+opencv-python-headless
+pillow
+matplotlib
+mgrs

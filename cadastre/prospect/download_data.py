@@ -2,7 +2,7 @@
 
 Sentinel-2 L2A COGs (AWS open data, no login) and Copernicus DEM GLO-30.
 Outputs: s2/big.npz (24x24 km window, UTM 40N, origin E 517506 N 3731389), dem.npy, dem_tr.txt.
-The scripts also expect the two cadastre screenshots at ../images/1.webp and ../images/2.webp.
+The scripts also expect the two cadastre screenshots at ../screenshots/ (run all scripts from cadastre/prospect/).
 """
 import os, numpy as np, rasterio
 from rasterio.windows import from_bounds

@@ -7,7 +7,7 @@ def prep(img): # high-pass to match texture not albedo
     img=img.astype(np.float32); return img-cv2.GaussianBlur(img,(0,0),8)
 gI=prep(g)
 res_all=[]
-for fn,anchor,top,bot in [("../images/2.webp",(612.5,511),70,885),("../images/1.webp",None,125,940)]:
+for fn,anchor,top,bot in [("../screenshots/cadastre_2_lnglat.webp",(612.5,511),70,885),("../screenshots/cadastre_1_measure.webp",None,125,940)]:
     im=np.array(Image.open(fn).convert("RGB")).astype(float)
     mapa=im[top:bot,0:1835]; R,G,B=[mapa[...,i] for i in range(3)]
     sat=(np.abs(R-G)<22)&(np.abs(G-B)<28)&(R>70)&(R<235)
