@@ -213,6 +213,79 @@ tot_len = 2677.5
 SRC_ROW = lambda t, u: f'<li><a href="{u}">{t}</a></li>'
 EXPL = "گزارش اکتشاف تفصیلی و برآورد ذخیره کانسار مس شیخ‌عالی"
 
+# ---- clean redraws from the report's own coordinate / interval tables
+ORE_HOLES = {"BH1": (69, 99, 28), "BH5": (60, 62, 1), "BH9": (73.5, 83.5, 10), "BH11": (32, 37, 5)}
+LABEL = {  # name: (dx, dy, anchor)  -- hand-placed so close holes do not overlap
+    "BH1": (-9, 4, "end"), "BH2": (9, 13, "start"), "BH3": (9, 4, "start"), "BH4": (-9, 4, "end"),
+    "BH5": (9, 4, "start"), "BH6": (8, -7, "start"), "BH7": (9, 4, "start"), "BH8": (8, -7, "start"),
+    "BH9": (9, 4, "start"), "BH10": (9, 4, "start"), "BH11": (-9, 0, "end"), "BH12": (9, 4, "start"),
+    "BH13": (-9, 4, "end"), "BH14": (-9, 14, "end"), "BH15": (9, 4, "start"), "BH16": (-9, 4, "end"),
+}
+
+def plan_svg():
+    S, x0, y0 = 1.55, 477800, 3112280
+    L, B = 90, 505
+    X = lambda x: L + (x - x0) * S
+    Y = lambda y: B - (y - y0) * S
+    W, H = 640, 585
+    o = [f'<svg viewBox="0 0 {W} {H}" width="100%" xmlns="http://www.w3.org/2000/svg" direction="ltr" '
+         f'font-family="Vazirmatn UI FD, Vazirmatn, sans-serif" font-size="10.5">']
+    o.append(f'<rect x="{L}" y="{B-300*S:.1f}" width="{320*S:.1f}" height="{300*S:.1f}" fill="#fafbfc" stroke="#9aa5b1"/>')
+    for x in range(477800, 478101, 50):
+        o.append(f'<line x1="{X(x):.1f}" y1="{B-300*S:.1f}" x2="{X(x):.1f}" y2="{B}" stroke="#e1e5ea"/>')
+        o.append(f'<text x="{X(x):.1f}" y="{B+15}" text-anchor="middle" fill="#5d6975">{fa(x)}</text>')
+    for y in range(3112300, 3112581, 50):
+        o.append(f'<line x1="{L}" y1="{Y(y):.1f}" x2="{L+320*S:.1f}" y2="{Y(y):.1f}" stroke="#e1e5ea"/>')
+        o.append(f'<text x="{L-6}" y="{Y(y)+3.5:.1f}" text-anchor="end" fill="#5d6975">{fa(y)}</text>')
+    for n, x, y, z, l in BOREHOLES:
+        xv, yv = float(x.replace(",", "")), float(y.replace(",", ""))
+        hit = n in ORE_HOLES
+        o.append(f'<circle cx="{X(xv):.1f}" cy="{Y(yv):.1f}" r="{6.5 if hit else 4.5}" '
+                 f'fill="{"#c0392b" if hit else "#8a97a5"}" stroke="#fff" stroke-width="1.2"/>')
+        dx, dy, an = LABEL[n]
+        o.append(f'<text x="{X(xv)+dx:.1f}" y="{Y(yv)+dy:.1f}" text-anchor="{an}" fill="#1c232b" '
+                 f'font-weight="{700 if hit else 400}">{n}</text>')
+    # scale bar, north arrow, axis titles, legend
+    sx, sy = L + 12, B - 14
+    o.append(f'<rect x="{sx}" y="{sy}" width="{50*S:.1f}" height="5" fill="#1c232b"/>')
+    o.append(f'<text x="{sx+25*S:.1f}" y="{sy-5}" text-anchor="middle" fill="#1c232b" style="direction:rtl;unicode-bidi:isolate">{fa(50)} متر</text>')
+    nx, ny = L + 320 * S - 22, B - 300 * S + 40
+    o.append(f'<polygon points="{nx},{ny-24} {nx-7},{ny} {nx},{ny-6} {nx+7},{ny}" fill="#1c232b"/>')
+    o.append(f'<text x="{nx}" y="{ny-28}" text-anchor="middle" font-weight="700" fill="#1c232b">N</text>')
+    o.append(f'<text x="{L+160*S:.1f}" y="{B+34}" text-anchor="middle" fill="#5d6975" style="direction:rtl;unicode-bidi:isolate">شرقی X (متر، UTM)</text>')
+    o.append(f'<text transform="translate(16,{B-150*S:.1f}) rotate(-90)" text-anchor="middle" fill="#5d6975" style="direction:rtl;unicode-bidi:isolate">شمالی Y (متر، UTM)</text>')
+    ly = H - 22
+    o.append(f'<circle cx="{L+8}" cy="{ly-4}" r="6.5" fill="#c0392b" stroke="#fff"/>')
+    o.append(f'<text x="{L+22}" y="{ly}" text-anchor="end" fill="#1c232b" style="direction:rtl;unicode-bidi:isolate">گمانهٔ دارای ماده معدنی و نمونه‌برداری‌شده (۴)</text>')
+    o.append(f'<circle cx="{L+300}" cy="{ly-4}" r="4.5" fill="#8a97a5" stroke="#fff"/>')
+    o.append(f'<text x="{L+312}" y="{ly}" text-anchor="end" fill="#1c232b" style="direction:rtl;unicode-bidi:isolate">سایر گمانه‌ها (۱۲؛ نتیجه گزارش نشده)</text>')
+    o.append("</svg>")
+    return "".join(o)
+
+
+def striplog_svg():
+    W, H, L, S = 640, 235, 78, 3.4
+    X = lambda m: L + m * S
+    rows = [("BH1", 140), ("BH5", 85), ("BH9", 150), ("BH11", 150)]
+    o = [f'<svg viewBox="0 0 {W} {H}" width="100%" xmlns="http://www.w3.org/2000/svg" direction="ltr" '
+         f'font-family="Vazirmatn UI FD, Vazirmatn, sans-serif" font-size="10.5">']
+    for m in range(0, 151, 25):
+        o.append(f'<line x1="{X(m):.1f}" y1="22" x2="{X(m):.1f}" y2="172" stroke="#e1e5ea"/>')
+        o.append(f'<text x="{X(m):.1f}" y="188" text-anchor="middle" fill="#5d6975">{fa(m)}</text>')
+    o.append(f'<text x="{X(75):.1f}" y="208" text-anchor="middle" fill="#5d6975" style="direction:rtl;unicode-bidi:isolate">عمق در امتداد گمانه (متر)</text>')
+    for k, (n, ln) in enumerate(rows):
+        y = 34 + k * 38
+        a, b, ns = ORE_HOLES[n]
+        o.append(f'<text x="{L-10}" y="{y+13}" text-anchor="end" font-weight="700" fill="#1c232b">{n}</text>')
+        o.append(f'<rect x="{X(0):.1f}" y="{y}" width="{ln*S:.1f}" height="16" rx="2" fill="#cfd5dc"/>')
+        o.append(f'<rect x="{X(a):.1f}" y="{y}" width="{(b-a)*S:.1f}" height="16" rx="2" fill="#c0392b"/>')
+        o.append(f'<text x="{X(ln)+8:.1f}" y="{y+12}" text-anchor="end" fill="#5d6975" style="direction:rtl;unicode-bidi:isolate">{fa(ln)} م</text>')
+        o.append(f'<text x="{X((a+b)/2):.1f}" y="{y-3}" text-anchor="middle" fill="#c0392b" font-weight="700" style="direction:rtl;unicode-bidi:isolate">'
+                 f'{fa(a,1) if a!=int(a) else fa(int(a))} تا {fa(b,1) if b!=int(b) else fa(int(b))} م، {fa(ns)} نمونه</text>')
+    o.append("</svg>")
+    return "".join(o)
+
+
 # ---- tonnage / metal above cut-off: mathematical bounds from the report's own mean-above-cut-off grades
 CUT_MEAN = {0.5: 5.29, 1: 5.81, 2: 6.15, 3: 7.16, 4: 7.40, 5: 8.83}   # % Cu, mean of blocks above cut-off
 G_ALL, G_MIN = 5.29, 0.61   # global block mean; lowest sample (IDW cannot go below it)
@@ -325,7 +398,7 @@ buyer = f"""
 
 <h2>۴. عملیات اکتشافی و داده‌های حفاری</h2>
 <p>اکتشاف تفصیلی بین سال‌های ۱۳۷۷ تا ۱۳۸۱ سه بخش داشت: تهیهٔ نقشهٔ توپوگرافی–زمین‌شناسی (حدود ۲ کیلومترمربع)، اکتشاف سطحی برای شناخت گسترش ماده معدنی سولفیدی در عمق، و برداشت ژئوفیزیک IP–RS. بر پایهٔ تلفیق این نتایج، ۱۶ گمانه با طول کل حدود {fa(2675)} متر حفاری شد. گمانه‌ها عمدتاً شیب‌دار (۷۰ تا ۸۷ درجه) هستند.</p>
-{fig('bh_plan.jpg','شکل ۷ — موقعیت گمانه‌های حفرشده (پلان). مختصات UTM بر حسب متر','fig-sm')}
+<figure>{plan_svg()}<figcaption>شکل ۷ — موقعیت گمانه‌های حفرشده (پلان)؛ بازرسم از جدول مختصات گزارش اکتشاف</figcaption></figure>
 <table>
   <tr><th>گمانه</th><th class="n">X (شرقی)</th><th class="n">Y (شمالی)</th><th class="n">ارتفاع دهانه (م)</th><th class="n">طول (م)</th></tr>
   {bh_rows}
@@ -340,7 +413,7 @@ buyer = f"""
   <tr><th>جمع</th><th></th><th></th><th class="n">۴۴</th></tr>
 </table>
 <p>داده‌ها (دهانه، پیمایش، لیتولوژی و عیار) در چهار فایل ساختاریافته وارد {LTR('Gemcom')} شده است. نتیجهٔ ۱۲ گمانهٔ دیگر (برخورد یا عدم برخورد با ماده معدنی) در گزارش اکتشاف صریحاً ذکر نشده و باید روشن شود.</p>
-{fig('bh_3d.jpg','شکل ۸ — موقعیت فضایی گمانه‌ها (بخش قرمز: ماده معدنی). راست: همهٔ گمانه‌ها؛ چپ: گمانه‌های برخوردکننده با ماده معدنی')}
+<figure>{striplog_svg()}<figcaption>شکل ۸ — بازهٔ ماده معدنی (قرمز) در چهار گمانهٔ نمونه‌برداری‌شده؛ طول در امتداد گمانه است، نه ضخامت واقعی</figcaption></figure>
 
 <h2>۵. مدل‌سازی و برآورد ذخیره</h2>
 <p>مدل سه‌بعدی توده از یک پلان افقی (نقشهٔ زمین‌شناسی سطحی) و یک مقطع شیب‌دار از گمانه‌های BH1، BH9 و BH11 ساخته شده است؛ نتیجه جسمی کاسه‌ای‌شکل است که از سطح به عمق می‌رود. مراحل: ساخت مدل توپوگرافی (شبکهٔ مثلثی نامنظم)، مدل‌سازی گمانه‌ها و لیتولوژی، ترسیم پلان و مقطع، و اتصال مقاطع برای ساخت مدل سه‌بعدی.</p>
@@ -451,7 +524,7 @@ buyer = f"""
 <p><b>تماس:</b> {todo('نام و شمارهٔ تماس فروشنده')}</p>
 
 <h2>۱۱. مأخذ داده‌ها و منابع</h2>
-<p class="note">همهٔ ارقام مربوط به اکتشاف و برآورد ذخیره از «{EXPL}» (فایل ارائهٔ ۴۸ صفحه‌ای) گرفته شده و مستقلاً با داده خام آزمایشگاهی یا خروجی نرم‌افزار تطبیق داده نشده است. شکل‌های ۱، ۲ و ۷ تا ۱۱ از همان گزارش برش خورده‌اند، شکل‌های ۳ تا ۶ با مجوز از مقالهٔ راستاد و همکاران (۲۰۰۲) نقل شده‌اند و شکل‌های ۱۲ و ۱۳ از جدول‌های گزارش اکتشاف دوباره رسم شده‌اند. اطلاعات تکمیلی از چکیدهٔ منابع زیر در نتایج جست‌وجو آمده؛ متن کامل بیشتر آن‌ها باز نشد.</p>
+<p class="note">همهٔ ارقام مربوط به اکتشاف و برآورد ذخیره از «{EXPL}» (فایل ارائهٔ ۴۸ صفحه‌ای) گرفته شده و مستقلاً با داده خام آزمایشگاهی یا خروجی نرم‌افزار تطبیق داده نشده است. شکل‌های ۱، ۲ و ۹ تا ۱۱ از همان گزارش برش خورده‌اند، شکل‌های ۳ تا ۶ با مجوز از مقالهٔ راستاد و همکاران (۲۰۰۲) نقل شده‌اند و شکل‌های ۷، ۸، ۱۲ و ۱۳ از جدول‌های گزارش اکتشاف دوباره رسم شده‌اند. اطلاعات تکمیلی از چکیدهٔ منابع زیر در نتایج جست‌وجو آمده؛ متن کامل بیشتر آن‌ها باز نشد.</p>
 <ul class="src">
   <li>{EXPL} (۱۳۷۷–۱۳۸۱)، فایل ارائهٔ ۴۸ صفحه‌ای، محدودهٔ بهره‌برداری مس شیخ‌عالی — منبع اصلی</li>
   {SRC_ROW('Rastad, Monazami Miralipour &amp; Momenzadeh (2002). Sheikh-Ali Copper Deposit, a Cyprus-Type VMS Deposit in Southeast Iran. Journal of Sciences, Islamic Republic of Iran, 13(1), 51–63','https://www.researchgate.net/publication/228463812_Sheikh-Ali_Copper_Deposit_a_Cyprus-Type_VMS_Deposit_in_Southeast_Iran')}
