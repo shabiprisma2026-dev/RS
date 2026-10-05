@@ -12,7 +12,7 @@ HERE = pathlib.Path(__file__).parent
 CU_PRICE = 14335          # USD/t, LME, 1 Oct 2026 (Trading Economics snippet)
 ORE_T = 305263            # t, 3-D model reserve estimate
 G_HI, G_LO = 0.0529, 0.025
-USD_TOMAN = 266020        # free-market rate, 11 Mehr 1405
+USD_TOMAN = 268300        # free-market rate, morning of 13 Mehr 1405
 TPY, REC, PAY, ROY, COST, TAX, DISC, CAPEX = 50000, .85, .90, .15, 100, .25, .20, 8e6
 
 
@@ -281,7 +281,7 @@ internal = f"""
 <div class="banner alt">
   <h1>ارزش‌گذاری و راهبرد فروش معدن شیخ‌علی</h1>
   <div class="sub">سند داخلی فروشنده — برای خریدار ارسال نشود</div>
-  <div class="meta">۱۳ مهر ۱۴۰۵ &nbsp;|&nbsp; دلار آزاد ۱۱ مهر ۱۴۰۵: {fa(USD_TOMAN)} تومان &nbsp;|&nbsp; مس: {fa(CU_PRICE)} دلار در تن</div>
+  <div class="meta">۱۳ مهر ۱۴۰۵ &nbsp;|&nbsp; دلار آزاد صبح ۱۳ مهر ۱۴۰۵: {fa(USD_TOMAN)} تومان &nbsp;|&nbsp; مس: {fa(CU_PRICE)} دلار در تن</div>
 </div>
 
 <div class="kpis">
@@ -356,12 +356,12 @@ internal = f"""
   <tr><td>عیار مس ۲٫۵٪، طلا ۰٫۶۴ و نقره ۷۵ گرم در تن</td><td>راستاد و همکاران، ۲۰۰۲</td><td>از چکیدهٔ نتایج جست‌وجو؛ متن کامل باز نشد</td></tr>
   <tr><td>«تنها نمونهٔ سولفید توده‌ای غنی از طلا»</td><td>بررسی متالوژنی VMS ایران (ScienceDirect)</td><td>از چکیدهٔ نتایج جست‌وجو؛ باید با متن اصلی تطبیق شود</td></tr>
   <tr><td>قیمت مس {fa(CU_PRICE)} دلار</td><td>{LTR('Trading Economics')}</td><td>صفحه از محیط ما باز نشد؛ عدد از نتایج جست‌وجو</td></tr>
-  <tr><td>دلار {fa(USD_TOMAN)} تومان</td><td>اقتصادآنلاین، ۱۱ مهر ۱۴۰۵</td><td>از نتایج جست‌وجو؛ نرخ روزانه تغییر می‌کند</td></tr>
+  <tr><td>دلار {fa(USD_TOMAN)} تومان</td><td>تعادل، ۱۳ مهر ۱۴۰۵</td><td>از نتایج جست‌وجو؛ منابع دیگر تا ۲۶۹٬۲۰۰ تومان هم گفته‌اند و نرخ روزانه تغییر می‌کند</td></tr>
   <tr><td>هزینه، بازیابی، ضریب ۳۰٪ و نسبت ۱ تا ۳٪</td><td>فرض تحلیلی ما</td><td>منبع منتشرشده ندارد؛ با کارشناس معدن بازبینی شود</td></tr>
 </table>
 <ul class="src">
   {SRC_ROW('Skillings Mining Intelligence — copper M&amp;A and valuation commentary','https://skillings.net/skillings-mining-intelligence-copper-records-ma-sequencing-and-streaming-discipline')}
-  {SRC_ROW('اقتصادآنلاین — قیمت دلار بازار آزاد ۱۱ مهر ۱۴۰۵','https://www.eghtesadonline.com/fa/news/2166737/')}
+  {SRC_ROW('تعادل — قیمت دلار و یورو ۱۳ مهر ۱۴۰۵','https://www.taadolnewspaper.ir/fa/news/405830/')}
   {SRC_ROW('Trading Economics — Copper','https://tradingeconomics.com/commodity/copper')}
 </ul>
 """
