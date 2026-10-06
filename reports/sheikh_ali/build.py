@@ -290,17 +290,30 @@ def striplog_svg():
 CUT_MEAN = {0.5: 5.29, 1: 5.81, 2: 6.15, 3: 7.16, 4: 7.40, 5: 8.83}   # % Cu, mean of blocks above cut-off
 G_ALL, G_MIN = 5.29, 0.61   # global block mean; lowest sample (IDW cannot go below it)
 def cutoff_rows():
+    REC_ = 0.75
     rows = ""
+    def bounds(c, m):
+        f_max = (G_ALL - G_MIN) / (m - G_MIN)   # blocks below cut-off at the lowest possible grade
+        f_min = (G_ALL - c) / (m - c)           # blocks below cut-off just under the cut-off
+        return f_min, f_max
     for c, m in CUT_MEAN.items():
         if c == 0.5:
             rows += (f'<tr><td class="n">{fa(c,1)}</td><td class="n">{fa(m,2)}</td><td class="n">{fa(ORE_T/1e3,1)}</td>'
-                     f'<td class="n">{fa(16148)}</td></tr>')
+                     f'<td class="n">{fa(16148)}</td><td class="n">{fa(16148*REC_)}</td></tr>')
             continue
-        f_max = (G_ALL - G_MIN) / (m - G_MIN)   # blocks below cut-off at the lowest possible grade
-        f_min = (G_ALL - c) / (m - c)           # blocks below cut-off just under the cut-off
+        f_min, f_max = bounds(c, m)
         rows += (f'<tr><td class="n">{fa(c,0)}</td><td class="n">{fa(m,2)}</td>'
                  f'<td class="n">{fa(f_min*ORE_T/1e3,0)} تا {fa(f_max*ORE_T/1e3,0)}</td>'
-                 f'<td class="n">{fa(f_min*m*ORE_T/100)} تا {fa(f_max*m*ORE_T/100)}</td></tr>')
+                 f'<td class="n">{fa(f_min*m*ORE_T/100)} تا {fa(f_max*m*ORE_T/100)}</td>'
+                 f'<td class="n">{fa(f_min*m*ORE_T/100*REC_)} تا {fa(f_max*m*ORE_T/100*REC_)}</td></tr>')
+    # selective-mining scenario from the report's conclusion: mean grade 5.29 x 1.5 = 7.94 %
+    m = round(G_ALL * 1.5, 2)
+    c = 4 + (m - 7.40) / (8.83 - 7.40)          # cut-off whose mean above-cut grade is 7.94 % (linear interpolation of the table)
+    f_min, f_max = bounds(c, m)
+    rows += (f'<tr style="background:#fbf5ef;font-weight:700"><td class="n">حدود {fa(c,1)}<br>(سناریوی استخراج انتخابی)</td><td class="n">{fa(m,2)}</td>'
+             f'<td class="n">{fa(f_min*ORE_T/1e3,0)} تا {fa(f_max*ORE_T/1e3,0)}</td>'
+             f'<td class="n">{fa(f_min*m*ORE_T/100)} تا {fa(f_max*m*ORE_T/100)}</td>'
+             f'<td class="n">{fa(f_min*m*ORE_T/100*REC_)} تا {fa(f_max*m*ORE_T/100*REC_)}</td></tr>')
     return rows
 
 # ================================================================= BUYER REPORT
@@ -466,10 +479,11 @@ buyer = f"""
 </table>
 <p><b>عیار حد و محتوای فلزی:</b> گزارش اکتشاف میانگین عیار بلوک‌های بالاتر از هر عیار حد را داده (از ۵٫۲۹٪ در حد ۰٫۵٪ تا ۱۰٫۶۱٪ در حد ۱۰٪)، ولی محتوای فلزی هر رده را از ضرب <i>کل</i> تناژ در عیار آن رده حساب کرده است. به همین دلیل با بالا رفتن عیار حد از ۱۶٬۱۰۰ به حدود ۳۲٬۰۰۰ تن مس می‌رسد، که ممکن نیست. آن عددها در این گزارش نیامده‌اند. جدول دقیق تناژ–عیار فقط از خود مدل بلوکی به دست می‌آید؛ اما با همان میانگین‌های گزارش، بازهٔ ریاضیِ درست قابل حساب است:</p>
 <table>
-  <tr><th class="n">عیار حد (٪ Cu)</th><th class="n">میانگین عیار بالای حد (٪)</th><th class="n">تناژ بالای حد (هزار تن)</th><th class="n">مس محتوا بالای حد (تن)</th></tr>
+  <tr><th class="n">عیار حد (٪ Cu)</th><th class="n">میانگین عیار بالای حد (٪)</th><th class="n">تناژ بالای حد (هزار تن)</th><th class="n">مس محتوا بالای حد (تن)</th><th class="n">مس قابل استحصال، بازیابی ۷۵٪ (تن)</th></tr>
   {cutoff_rows()}
 </table>
 <p class="note">روش: اگر {LTR('f')} سهم تناژ بالای حد، {LTR('m')} میانگین عیار بالای حد و {LTR('b')} میانگین عیار بلوک‌های زیر حد باشد، {LTR('5.29 = f·m + (1−f)·b')}. چون {LTR('b')} کمتر از عیار حد و (در روش عکس مجذور فاصله) بیشتر از کمترین نمونه (۰٫۶۱٪) است، {LTR('f')} و محتوای فلزی در یک بازه می‌افتند. برای عیار حد ۶٪ و بیشتر، این بازه آن‌قدر پهن می‌شود که اطلاعاتی نمی‌دهد. این بازه جایگزین جدول مدل بلوکی نیست.</p>
+<p><b>سناریوی استخراج انتخابی:</b> نتیجه‌گیری گزارش اکتشاف از عیار متوسط ۷٫۹۴٪ (۵۰٪ بالاتر از ۵٫۲۹٪) یاد می‌کند. این عیار با عیار حد حدود ۴٫۴٪ (درون‌یابی خطی جدول بالا) برابر است. در آن حد فقط بخشی از توده (حدود ۷۸ تا ۱۹۵ هزار تن) استخراج می‌شود و مس قابل استحصال با بازیابی ۷۵٪ حداکثر حدود ۱۱٬۶۰۰ تن است؛ یعنی عیار بالاتر به قیمت تناژ و فلز کمتر به دست می‌آید. فلز محتوای ۲۸٬۱۰۰ تن در گزارش اکتشاف با این جدول سازگار نیست و در این گزارش نیامده است.</p>
 
 <h2>۸. نقاط قوت، محدودیت‌ها و ریسک‌ها</h2>
 <h3>نقاط قوت</h3>
