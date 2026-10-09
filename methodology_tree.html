@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<style>
+  :root{
+    --ink:#1f2a37; --muted:#5b6675; --line:#9aa5b1; --bg:#ffffff;
+    --geo:#b4632a;   --geo-bg:#fbf1e8;
+    --rs:#0f8a7e;    --rs-bg:#e7f6f3;
+    --gc:#7b4bb7;    --gc-bg:#f2ecfa;
+    --gp:#2563b0;    --gp-bg:#e9f0fa;
+    --ahp:#c48a06;   --ahp-bg:#fff6dc;
+    --out:#2f7d3a;   --out-bg:#eaf6ec;
+    --fld:#b8323a;   --fld-bg:#fcebec;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg)}
+  body{font-family:"Vazirmatn",sans-serif;color:var(--ink);width:1600px;height:1000px;position:relative;overflow:hidden}
+  #wires{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+  .stage{position:relative;z-index:1;padding:34px 48px 30px;height:100%;display:grid;
+    grid-template-columns:repeat(8,1fr);column-gap:16px;
+    grid-template-rows:auto 92px auto 1fr auto 1fr auto 1fr auto 1fr auto;align-items:center}
+  .box{border-radius:14px;text-align:center;display:flex;align-items:center;justify-content:center;line-height:1.55}
+  .title{grid-column:1/-1;justify-self:center;width:1080px;padding:20px 34px;
+    background:linear-gradient(135deg,#1f3a5f,#28507e);color:#fff;font-weight:700;font-size:23px;
+    box-shadow:0 6px 18px rgba(31,58,95,.25)}
+  .layer{grid-row:3;padding:14px 10px;font-weight:700;font-size:21px;color:#fff;gap:10px;
+    box-shadow:0 4px 12px rgba(0,0,0,.12);justify-self:center;width:88%;white-space:nowrap}
+  .child small{font-size:13.5px;color:var(--muted);font-weight:400;direction:ltr;unicode-bidi:isolate}
+  .num{display:inline-flex;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.25);
+    align-items:center;justify-content:center;font-size:17px}
+  .child{grid-row:5;flex-direction:column;gap:4px;align-self:stretch;padding:12px 8px;font-size:16.5px;font-weight:500;
+    border:2px solid;background:#fff;min-height:96px}
+  .geo{--c:var(--geo);--cb:var(--geo-bg)} .rs{--c:var(--rs);--cb:var(--rs-bg)}
+  .gc{--c:var(--gc);--cb:var(--gc-bg)}   .gp{--c:var(--gp);--cb:var(--gp-bg)}
+  .layer{background:var(--c)}
+  .child{border-color:var(--c);background:var(--cb)}
+  .ahp{grid-row:7;grid-column:3/7;justify-self:center;width:340px;padding:16px;font-size:22px;font-weight:700;
+    background:var(--ahp-bg);border:2.5px solid var(--ahp);color:#6b4b00;box-shadow:0 4px 12px rgba(196,138,6,.18)}
+  .type{grid-row:9;justify-self:center;width:300px;padding:14px;font-size:19px;font-weight:700;
+    background:var(--out-bg);border:2px solid var(--out);color:#1d5a26}
+  .t1{grid-column:5/7}.t2{grid-column:3/5}
+  .prio{grid-row:11;grid-column:3/7;justify-self:center;width:380px;padding:15px;font-size:20px;font-weight:700;
+    background:var(--out);color:#fff;box-shadow:0 4px 12px rgba(47,125,58,.25)}
+  .field{grid-row:13;grid-column:3/7;justify-self:center;width:380px;padding:15px;font-size:20px;font-weight:700;
+    background:var(--fld-bg);border:2.5px dashed var(--fld);color:#8a1f26}
+  .stage{grid-template-rows:auto 70px auto 46px auto 56px auto 46px auto 40px auto 40px auto}
+</style>
+</head>
+<body>
+<svg id="wires"></svg>
+<div class="stage">
+  <div class="box title" id="T">اکتشاف عناصر فلزی در محدوده‌ی ۱:۱۰۰۰۰۰ اهر به کمک تلفیق لایه‌های دورسنجی، ژئوشیمی و زمین‌شناسی در محیط سامانه‌ی اطلاعات جغرافیایی (GIS)</div>
+
+  <!-- RTL grid: column 1 is on the right -->
+  <div class="box layer geo" id="L1" style="grid-column:1/3"><span class="num">۱</span>لایه‌ی زمین‌شناسی</div>
+  <div class="box layer rs"  id="L2" style="grid-column:3/6"><span class="num">۲</span>لایه‌ی دورسنجی</div>
+  <div class="box layer gc"  id="L3" style="grid-column:6/7;width:100%;font-size:17px;padding:16px 4px;gap:6px"><span class="num">۳</span>ژئوشیمی آبراهه‌ای</div>
+  <div class="box layer gp"  id="L4" style="grid-column:7/9"><span class="num">۴</span>لایه‌ی ژئوفیزیک هوابرد</div>
+
+  <div class="box child geo" data-p="L1" style="grid-column:1">معرفی توده‌های نفوذی و سنگ‌های میزبان</div>
+  <div class="box child geo" data-p="L1" style="grid-column:2">اندیس‌ها و معادن موجود در منطقه</div>
+  <div class="box child rs"  data-p="L2" style="grid-column:5">اصلاح لیتولوژی توده‌های نفوذی و سنگ میزبان<br><small>OBIA</small></div>
+  <div class="box child rs"  data-p="L2" style="grid-column:4">جداسازی دگرسانی‌ها<br><small>BR · PCA · LS‑Fit · SAM · MTMF</small></div>
+  <div class="box child rs"  data-p="L2" style="grid-column:3">استخراج خطواره‌ها<br><small style="direction:rtl">ترکیب باندی و DEM</small></div>
+  <div class="box child gc"  data-p="L3" style="grid-column:6">تهیه‌ی نقشه‌های افزودگی عناصر<br><small>IDW</small></div>
+  <div class="box child gp"  data-p="L4" style="grid-column:7">نقشه‌ی گسل‌های عمقی</div>
+  <div class="box child gp"  data-p="L4" style="grid-column:8">نقشه‌ی توده‌های مغناطیسی</div>
+
+  <div class="box ahp" id="A">تلفیق به روش AHP</div>
+  <div class="box type t1" id="P">معرفی کانه‌زایی پورفیری</div>
+  <div class="box type t2" id="H">معرفی کانه‌زایی هیدروترمال</div>
+  <div class="box prio" id="R">معرفی مناطق اولویت‌دار</div>
+  <div class="box field" id="F">عملیات صحرایی و صحت‌سنجی</div>
+</div>
+<script>
+const svg=document.getElementById('wires');
+const NS='http://www.w3.org/2000/svg';
+const r=el=>el.getBoundingClientRect();
+const cx=b=>b.left+b.width/2;
+function path(d,color,w=2.2,arrow=false){
+  const p=document.createElementNS(NS,'path');
+  p.setAttribute('d',d);p.setAttribute('fill','none');p.setAttribute('stroke',color);
+  p.setAttribute('stroke-width',w);p.setAttribute('stroke-linecap','round');p.setAttribute('stroke-linejoin','round');
+  if(arrow)p.setAttribute('marker-end','url(#ar-'+arrow+')');
+  svg.appendChild(p);
+}
+const defs=document.createElementNS(NS,'defs');svg.appendChild(defs);
+function marker(id,color){
+  const m=document.createElementNS(NS,'marker');
+  m.setAttribute('id','ar-'+id);m.setAttribute('viewBox','0 0 10 10');m.setAttribute('refX','9');m.setAttribute('refY','5');
+  m.setAttribute('markerWidth','7');m.setAttribute('markerHeight','7');m.setAttribute('orient','auto-start-reverse');
+  const p=document.createElementNS(NS,'path');p.setAttribute('d','M0,0 L10,5 L0,10 z');p.setAttribute('fill',color);
+  m.appendChild(p);defs.appendChild(m);
+}
+const css=getComputedStyle(document.documentElement);
+const C=n=>css.getPropertyValue('--'+n).trim();
+['line','geo','rs','gc','gp','ahp','out','fld'].forEach(n=>marker(n,C(n)));
+const R=8; // corner radius
+function elbow(x1,y1,x2,y2,color,arrow){ // vertical-horizontal-vertical
+  const ym=(y1+y2)/2;
+  if(Math.abs(x1-x2)<1){path(`M${x1},${y1} V${y2}`,color,2.2,arrow);return;}
+  const s=x2>x1?1:-1;
+  path(`M${x1},${y1} V${ym-R} Q${x1},${ym} ${x1+s*R},${ym} H${x2-s*R} Q${x2},${ym} ${x2},${ym+R} V${y2}`,color,2.2,arrow);
+}
+const T=r(document.getElementById('T'));
+// title -> layers
+const Ls=['L1','L2','L3','L4'].map(id=>r(document.getElementById(id)));
+const tY=(T.bottom+Math.min(...Ls.map(b=>b.top)))/2;
+path(`M${cx(T)},${T.bottom} V${tY}`,C('line'));
+path(`M${Math.min(...Ls.map(cx))},${tY} H${Math.max(...Ls.map(cx))}`,C('line'));
+Ls.forEach(b=>path(`M${cx(b)},${tY} V${b.top-2}`,C('line'),2.2,'line'));
+// layers -> children
+document.querySelectorAll('.child').forEach(ch=>{
+  const p=document.getElementById(ch.dataset.p);const b=r(ch),pb=r(p);
+  const k=ch.classList[2];
+  elbow(cx(pb),pb.bottom,cx(b),b.top-2,C(k),k);
+});
+// children -> AHP via bus
+const A=r(document.getElementById('A'));
+const kids=[...document.querySelectorAll('.child')].map(c=>r(c));
+const busY=(Math.max(...kids.map(k=>k.bottom))+A.top)/2;
+kids.forEach(k=>path(`M${cx(k)},${k.bottom} V${busY}`,C('line')));
+path(`M${Math.min(...kids.map(cx))},${busY} H${Math.max(...kids.map(cx))}`,C('line'));
+path(`M${cx(A)},${busY} V${A.top-2}`,C('ahp'),2.6,'ahp');
+// AHP -> types -> priority -> field
+const P=r(document.getElementById('P')),H=r(document.getElementById('H')),Rb=r(document.getElementById('R')),F=r(document.getElementById('F'));
+elbow(cx(A),A.bottom,cx(P),P.top-2,C('out'),'out');
+elbow(cx(A),A.bottom,cx(H),H.top-2,C('out'),'out');
+elbow(cx(P),P.bottom,cx(Rb),Rb.top-2,C('out'),'out');
+elbow(cx(H),H.bottom,cx(Rb),Rb.top-2,C('out'),'out');
+path(`M${cx(Rb)},${Rb.bottom} V${F.top-2}`,C('fld'),2.6,'fld');
+</script>
+</body>
+</html>
